@@ -35,12 +35,12 @@ fi
 
 # Apply FFV1 compression with dynamic setfield filter
 if [ "$FORMAT" == "NTSC" ]; then
-  ffmpeg -i "$INPUT" -c:v ffv1 -coder 1 -context 1 -g 1 -level 3 -slices 16 -slicecrc 1 \
+  ffmpeg -i "$INPUT" -c:v ffv1 -coder 1 -context 1 -g 1 -level 3 -slices 4 -slicecrc 1 \
     -vf "$SETFIELD_FILTER" -flags +ilme+ildct -pixel_format yuv422p -color_range tv \
     -color_primaries smpte170m -color_trc bt709 -colorspace smpte170m \
     -shortest -c:a pcm_s24le -y "$OUTPUT"
 elif [ "$FORMAT" == "PAL" ]; then
-  ffmpeg -i "$INPUT" -c:v ffv1 -coder 1 -context 1 -g 1 -level 3 -slices 16 -slicecrc 1 \
+  ffmpeg -i "$INPUT" -c:v ffv1 -coder 1 -context 1 -g 1 -level 3 -slices 4 -slicecrc 1 \
     -vf "$SETFIELD_FILTER" -flags +ilme+ildct -aspect 4:3 -pixel_format yuv422p -color_range tv \
     -color_primaries bt470bg -color_trc bt709 -colorspace bt470bg \
     -shortest -c:a pcm_s24le -y "$OUTPUT"
