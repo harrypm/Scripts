@@ -24,9 +24,9 @@ This script simply benchmarks your CPUs proformace abbility with SoX usefull to 
 
 - align
 
-This script is ment for easy global use of 48kh and 46khz files from HiFi-Decode / Baseband capture from MISRC/Clockgen Mod. 
+This script is ment for easy global auto audio alignment of 46875 Hz, 78125 Hz & 48000 Hz files via same clock Baseband captures from the CX Card Clockgen Mod workflow, the MISRC V2.5 workflow and HiFi-Decode's stock 48khz output.
 
-This will take .JSON decode data and or .wav/.flac audio files either first or last, and will assume Video RF rate based off a simllaer or same name local file in the directory.
+This will take .JSON decode data for frame offset refrence and or .wav/.flac audio files either first or last in order, and will assume Video RF rate based off a same name local file in the directory if rates are stated inside of the file i.g `my-tape-40msps.flac` for example.
 
 
 # FFV1
