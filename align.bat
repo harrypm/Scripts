@@ -4,9 +4,8 @@ setlocal enabledelayedexpansion
 REM Windows batch version of align script
 REM Usage: align.bat input_audio_file.flac|.wav metadata_file.json
 
-REM Define paths for dependencies (adjust these paths for your Windows installation)
-set "AAA_EXE=C:\Tools\auto_audio_align\aaa.exe"
-set "AAA_EXE_FALLBACK=C:\Desktop\RF-Captures\aaa.exe"
+REM Define paths for dependencies
+set "AAA_EXE=%~dp0VhsDecodeAutoAudioAlign.exe"
 
 REM Check if exactly two arguments are provided
 if "%~2"=="" goto :usage
@@ -66,15 +65,12 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-REM Check for aaa.exe
+REM Check for VhsDecodeAutoAudioAlign.exe
 if exist "%AAA_EXE%" (
     set "AAA_PATH=%AAA_EXE%"
-) else if exist "%AAA_EXE_FALLBACK%" (
-    set "AAA_PATH=%AAA_EXE_FALLBACK%"
 ) else (
-    echo Error: aaa.exe not found in expected locations:
+    echo Error: VhsDecodeAutoAudioAlign.exe not found in script directory:
     echo   - %AAA_EXE%
-    echo   - %AAA_EXE_FALLBACK%
     exit /b 1
 )
 

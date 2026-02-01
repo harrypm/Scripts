@@ -8,9 +8,9 @@ param(
     [string]$Arg2
 )
 
-# Define paths for dependencies (adjust these paths for your Windows installation)
-$AAA_EXE = "C:\Tools\auto_audio_align\aaa.exe"
-$AAA_EXE_FALLBACK = "C:\Desktop\RF-Captures\aaa.exe"
+# Define paths for dependencies
+$ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$AAA_EXE = Join-Path $ScriptDir "VhsDecodeAutoAudioAlign.exe"
 
 function Print-Usage {
     Write-Host "Usage: align.ps1 <input_audio_file.flac|.wav> <metadata_file.json>"
@@ -67,15 +67,12 @@ foreach ($Cmd in $RequiredCommands) {
     }
 }
 
-# Check for aaa.exe
+# Check for VhsDecodeAutoAudioAlign.exe
 if (Test-Path $AAA_EXE) {
     $AAA_PATH = $AAA_EXE
-} elseif (Test-Path $AAA_EXE_FALLBACK) {
-    $AAA_PATH = $AAA_EXE_FALLBACK
 } else {
-    Write-Host "Error: aaa.exe not found in expected locations:"
+    Write-Host "Error: VhsDecodeAutoAudioAlign.exe not found in script directory:"
     Write-Host "  - $AAA_EXE"
-    Write-Host "  - $AAA_EXE_FALLBACK"
     exit 1
 }
 
